@@ -94,17 +94,12 @@
             url: 'item.txt',
             dataType: 'text',
             success: function (data) {
-                itemArr = data.split("：");
-                //后面是中文空格
-                itemMap.set(itemArr[0], itemArr[1].substring(0, itemArr[1].indexOf(chineseSpace)));
-                for (var i = 0; i <= itemArr.length - 2; i++) {
-                    if (i != itemArr.length - 2) {
-                        itemMap.set(itemArr[i].substring(itemArr[i].lastIndexOf(chineseSpace))
-                            , itemArr[i + 1].substring(0, itemArr[i + 1].indexOf(chineseSpace)));
-                    } else {
-                        itemMap.set(itemArr[i].substring(itemArr[i].lastIndexOf(chineseSpace))
-                            , itemArr[i + 1]);
-                    }
+
+                itemArr = data.split("　　");
+
+                for(let i=0;i<itemArr.length;i+=1) {
+                    var temp = itemArr[i].split("：");
+                    itemMap.set(temp[0],temp[1]);
                 }
             }
         });
